@@ -75,7 +75,7 @@ public class main {
 			query2.getResultList().stream().forEach(e -> e.setNiveau(e.getNiveau() + 1));
 			transaction.commit();
 		} catch( Exception e) {
-			System.out.println("Pas d'ajout de niveau");
+			System.out.println("Pas de niveau supplémentaire");
 			transaction.rollback();
 		}
 	
