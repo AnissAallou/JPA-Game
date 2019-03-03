@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "partie")
-public class Partie {
+@Table(name = "game")
+public class Game {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Partie {
 	@Column( nullable=false)
 	private int score =0;
 	@Column(name = "dateNaissance")
-	private LocalDate datedeNaissance;
+	private LocalDate dateNaissance;
 	
 	
 	
@@ -27,11 +27,11 @@ public class Partie {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getNiveau() {
-		return niveau;
+	public int getLevel() {
+		return level;
 	}
-	public void setNiveau(int niveau) {
-		this.niveau = niveau;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	public int getScore() {
 		return score;
@@ -39,16 +39,18 @@ public class Partie {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	public LocalDate getDatedeNaissance() {
-		return datedeNaissance;
+	public LocalDate getDateNaissance() {
+		return dateNaissance;
 	}
-	public void setDatedeNaissance(LocalDate datedeNaissance) {
-		this.datedeNaissance = datedeNaissance;
+	public void setDatedeNaissance(LocalDate dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 	@Override
 	public String toString() {
-		return "Partie [id=" + id + ", niveau=" + niveau + ", score=" + score + ", datedeNaissance=" + datedeNaissance
-				+ "]";
+		return "Game : id  = "  + id 
+				+ ", niveau = " + niveau
+			        + ", score = " + score 
+				+ ", date de naissance = " + dateNaissance;
 	}
 	
 	
