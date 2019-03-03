@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Joueur {
+public class Player {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -23,7 +23,6 @@ public class Joueur {
 	public int getId() {
 		return id;
 	}
-	
 	
 	public void setId(int id) {
 		this.id = id;
@@ -50,7 +49,10 @@ public class Joueur {
 
 	@Override
 	public String toString() {
-		return "Joueur => id : " + id + ", nom : " + name + ", mail : " + mail + ", utilisateur : " + user;
+		return "Player id : " + id + 
+			", nom : " + name + 
+			", mail : " + mail + 
+			", utilisateur : " + user;
 	}
 
 	
