@@ -1,0 +1,44 @@
+package main;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Car extends Engin {
+	
+	
+	
+	@Column( nullable=false, length = 50)
+	private int nb_roues;
+	@Column( nullable=false, length = 50)
+	private int autonomie_heure;
+	
+
+	public int getNbRoues() {
+		return nbRoues;
+	}
+	public void setNbRoues(int nb_roues) {
+		this.nbRoues = nbRoues;
+	}
+	public int getAutonomieHour() {
+		return autonomieHour;
+	}
+	public void setAutonomieHour(int autonomieHour) {
+		this.autonomieHour = autonomieHour;
+	}
+	@Override
+	public String toString() {
+		return "Car [nb_roues=" + nb_roues + ", autonomie_heure=" + autonomieHour + ", getColour()="
+				+ getColour() + ", getVitesse_max()=" + getVitesse_max() + ", getAvatar()=" + getAvatar()
+				+ ", getId()=" + getId() + ", getClass()=" + getClass() + "]";
+	}
+	
+	
+	
+	
+	
+	
+}
