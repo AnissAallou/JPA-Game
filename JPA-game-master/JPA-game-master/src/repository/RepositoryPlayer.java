@@ -6,50 +6,50 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import main.Joueur;
+import main.Player;
 
 
-public class JoueurRepository {
+public class RepositoryPlayer {
 
-	static EntityManager em = 	main.DatabaseHandle.getEntityManagerFactory();
+	static EntityManager em = main.DatabaseHandle.getEntityManagerFactory();
 	
-	public static Joueur getJoueurByname(String value) {
+	public static Player getPlayerByname(String value) {
 		
-		TypedQuery<Joueur> typedQuery1 = em.createQuery("Select j from Joueur j where nom =:nom",Joueur.class);
-		typedQuery1.setParameter("nom", value );
+		TypedQuery<Player> QueryOne = em.createQuery("Select p from Player p where nom =:nom",Player.class);
+		QueryOne.setParameter("nom", value );
 
-		return typedQuery1.getSingleResult();
+		return QueryOne.getSingleResult();
 		
 	}
 	
-	public static List <Joueur> getAllJoueurs() {
+	public static List <Joueur> getAllPlayers() {
 		
-		TypedQuery<Joueur> typedQuery1 = em.createQuery("Select j from Joueur j" ,Joueur.class);
+		TypedQuery<Player> QueryOne = em.createQuery("Select p from Player p" ,Player.class);
 	
 
-		return typedQuery1.getResultList();
+		return QueryOne.getResultList();
 		
 	}
-	public static List <Joueur> getJoueursByDatePartie(LocalDate date) {
+	public static List <Player> getPlayersByDatePartie(LocalDate date) {
 
 //		
-//		Select j from Joueur as j JOIN Joueur_partie as jp ON jp.Joueur_id=j.id JOIN Partie as p ON jp.Partie_id=p.id where p.date =:date
-		TypedQuery<Joueur> typedQuery1 = em.createQuery("Select DISTINCT j FROM Joueur j Join j.parties p Join p.joueurs joueurs Where p.date=:date ",Joueur.class);
+//		Select p FROM Player AS p JOIN Joueur_partie as jp ON jp.Joueur_id=j.id JOIN Partie as p ON jp.Partie_id=p.id where p.date =:date
+		TypedQuery<Player> QueryOne = em.createQuery("SELECT DISTINCT p FROM Player p JOIN p.parties p JOIN p.players players WHERE p.date=:date ",Player.class);
 	
-		typedQuery1.setParameter("date", date );
-		return typedQuery1.getResultList();
+		QueryOne.setParameter("date", date );
+		return QueryOne.getResultList();
 		
 	}
 //	Pour un joueur, afficher les informations de l’engin utilisé dans sa dernière partie
 //	ainsi que son score et le niveau du jeu atteint ;
-	public static  Joueur getJoueurLastPartieByJoueurId(int id) {
+	public static  Player getPlayerLastPartieByPlayerId(int id) {
 
 //		
-//		Select j from Joueur as j JOIN Joueur_partie as jp ON jp.Joueur_id=j.id JOIN Partie as p ON jp.Partie_id=p.id where p.date =:date
-		TypedQuery<Joueur> typedQuery1 = em.createQuery("Select j FROM Joueur j Join j.avatar a Join a.engins e Join j.parties p Where j.id=:id ORDER BY p.date ",Joueur.class);
-		typedQuery1.setMaxResults(1);
-		typedQuery1.setParameter("id", id );
-		return typedQuery1.getSingleResult();
+//		Select p from Player as p JOIN Joueur_partie as jp ON jp.Joueur_id=j.id JOIN Partie as p ON jp.Partie_id=p.id where p.date =:date
+		TypedQuery<Player> QueryOne = em.createQuery("SELECT p FROM Player p JOIN p.avatar a JOIN a.engins e JOIN p.parties p Where p.id=:id ORDER BY p.date ",Player.class);
+		QueryOne.setMaxResults(1);
+		QueryOne.setParameter("id", id );
+		return QueryOne.getSingleResult();
 		
 	}
 	
